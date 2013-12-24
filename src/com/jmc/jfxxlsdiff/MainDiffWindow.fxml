@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="574.0000999999975" prefWidth="810.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.jmc.jfxxlsdiff.MainDiffWindowController">
+  <children>
+    <Button id="btnFile1" mnemonicParsing="false" onAction="#handleSelectFile1Action" text="Select File 1" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0" />
+    <Button id="btnFile2" mnemonicParsing="false" onAction="#handleSelectFile2Action" text="Select File 2" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="51.0" />
+    <TextField fx:id="txtFile1" editable="false" prefWidth="472.0" AnchorPane.leftAnchor="131.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="16.0" />
+    <TextField fx:id="txtFile2" editable="false" prefWidth="472.0" AnchorPane.leftAnchor="131.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="52.0" />
+    <SplitPane dividerPositions="0.5013089005235603" focusTraversable="true" prefHeight="312.0" prefWidth="488.0000999999975" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="86.0">
+      <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+            <TableView id="table1" prefHeight="310.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Column X" />
+                <TableColumn prefWidth="75.0" text="Column X" />
+              </columns>
+            </TableView>
+          </children>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <children>
+            <TableView id="table2" prefHeight="310.0" prefWidth="239.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="Column X" />
+                <TableColumn prefWidth="75.0" text="Column X" />
+              </columns>
+            </TableView>
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+    <ScrollBar layoutX="14.0" orientation="VERTICAL" prefHeight="312.0" AnchorPane.bottomAnchor="30.0" AnchorPane.topAnchor="86.0" />
+    <ScrollBar prefWidth="488.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="14.0" />
+    <ChoiceBox id="cbxFile1Tabs" fx:id="cbxTabs1" prefWidth="141.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="14.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <ChoiceBox id="cbxFile2Tabs" fx:id="cbxTabs2" prefWidth="141.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="51.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ChoiceBox>
+    <ProgressIndicator id="file1LoadProgress" fx:id="progress1" progress="0.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="15.0" />
+    <ProgressIndicator id="file2LoadProgress" fx:id="progress2" progress="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="51.0" />
+  </children>
+</AnchorPane>
