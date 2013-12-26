@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.collections.*?>
 <?import javafx.scene.*?>
@@ -57,7 +58,10 @@
         </FXCollections>
       </items>
     </ChoiceBox>
-    <ProgressIndicator id="file1LoadProgress" fx:id="progress1" progress="0.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="15.0" />
-    <ProgressIndicator id="file2LoadProgress" fx:id="progress2" progress="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="51.0" />
+    <ProgressIndicator id="file1LoadProgress" fx:id="progress1" progress="0.0" style="" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+    <ProgressIndicator id="file2LoadProgress" fx:id="progress2" progress="0.0" style="" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="51.0" />
   </children>
+  <stylesheets>
+    <URL value="@JfxXlsDiff.css" />
+  </stylesheets>
 </AnchorPane>

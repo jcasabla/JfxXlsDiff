@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 25, 2013, 7:22:13 PM
+    Author     : Justo_Casablanca
+*/
+
+#file1LoadProgress .percentage {
+	-fx-fill: null;
+}
+
+#file2LoadProgress .percentage {
+	-fx-fill: null;
+}
+
+#file1LoadProgress:indeterminate .spinner {
+    -fx-padding: 0.083333em;
+}
+
+#file2LoadProgress:indeterminate .spinner {
+    -fx-padding: 0.083333em;
+}
