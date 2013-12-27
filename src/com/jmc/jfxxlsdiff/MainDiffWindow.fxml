@@ -14,11 +14,11 @@
     <Button id="btnFile2" mnemonicParsing="false" onAction="#handleSelectFile2Action" text="Select File 2" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="51.0" />
     <TextField fx:id="txtFile1" editable="false" prefWidth="472.0" AnchorPane.leftAnchor="131.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="16.0" />
     <TextField fx:id="txtFile2" editable="false" prefWidth="472.0" AnchorPane.leftAnchor="131.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="52.0" />
-    <SplitPane dividerPositions="0.5013089005235603" focusTraversable="true" prefHeight="312.0" prefWidth="488.0000999999975" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="86.0">
+    <SplitPane dividerPositions="0.5013089005235603" focusTraversable="true" prefHeight="424.0000999999975" prefWidth="766.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="120.0">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>
-            <TableView id="table1" prefHeight="310.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="table1" prefHeight="310.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="Column X" />
                 <TableColumn prefWidth="75.0" text="Column X" />
@@ -28,7 +28,7 @@
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>
-            <TableView id="table2" prefHeight="310.0" prefWidth="239.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="table2" prefHeight="310.0" prefWidth="239.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="Column X" />
                 <TableColumn prefWidth="75.0" text="Column X" />
@@ -38,7 +38,7 @@
         </AnchorPane>
       </items>
     </SplitPane>
-    <ScrollBar layoutX="14.0" orientation="VERTICAL" prefHeight="312.0" AnchorPane.bottomAnchor="30.0" AnchorPane.topAnchor="86.0" />
+    <ScrollBar layoutX="14.0" orientation="VERTICAL" prefHeight="422.999977929685" AnchorPane.bottomAnchor="30.0" AnchorPane.topAnchor="121.0" />
     <ScrollBar prefWidth="488.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="14.0" />
     <ChoiceBox id="cbxFile1Tabs" fx:id="cbxTabs1" prefWidth="141.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="14.0">
       <items>
@@ -58,8 +58,12 @@
         </FXCollections>
       </items>
     </ChoiceBox>
-    <ProgressIndicator id="file1LoadProgress" fx:id="progress1" progress="0.0" style="" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
-    <ProgressIndicator id="file2LoadProgress" fx:id="progress2" progress="0.0" style="" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="51.0" />
+    <ProgressIndicator fx:id="sheets1LoadProgress" progress="0.0" style="" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0" />
+    <ProgressIndicator fx:id="sheets2LoadProgress" progress="0.0" style="" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="51.0" />
+    <Button id="btnLoadFile1" layoutX="14.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleLoadFile1Action" prefWidth="105.0" text="Load File 1" />
+    <Button id="btnLoadFile2" layoutX="131.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleLoadFile2Action" prefWidth="105.0" text="Load File 2" />
+    <Button id="btnDoDiff" layoutX="251.0" layoutY="85.0" mnemonicParsing="false" prefWidth="105.0" text="Diff !" />
+    <ProgressIndicator fx:id="loadProgress" layoutX="367.0" layoutY="85.0" progress="0.0" />
   </children>
   <stylesheets>
     <URL value="@JfxXlsDiff.css" />

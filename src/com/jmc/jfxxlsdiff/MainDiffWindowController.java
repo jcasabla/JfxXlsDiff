@@ -5,8 +5,10 @@
  */
 package com.jmc.jfxxlsdiff;
 
+import com.jmc.jfxxlsdiff.task.GetWorkSheetContent;
 import com.jmc.jfxxlsdiff.task.GetWorkSheetNames;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +22,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 /**
  * FXML Controller class
@@ -41,20 +46,26 @@ public class MainDiffWindowController implements Initializable {
 
 	@FXML private ChoiceBox cbxTabs2;
 
-	@FXML private ProgressIndicator progress1;
+	@FXML private ProgressIndicator sheets1LoadProgress;
 
-	@FXML private ProgressIndicator progress2;
+	@FXML private ProgressIndicator sheets2LoadProgress;
+
+	@FXML private ProgressIndicator loadProgress;
+
+	@FXML private TableView table1;
+
+	@FXML private TableView table2;
 
 	@FXML
 	protected void handleSelectFile1Action( ActionEvent event ) {
 		logger.log( Level.INFO, "handleSelectFile1Action( ActionEvent )" );
-		handleSelectFile( txtFile1, cbxTabs1, progress1 );
+		handleSelectFile( txtFile1, cbxTabs1, sheets1LoadProgress );
 	}
 
 	@FXML
 	protected void handleSelectFile2Action( ActionEvent event ) {
 		logger.log( Level.INFO, "handleSelectFile2Action( ActionEvent )" );		
-		handleSelectFile( txtFile2, cbxTabs2, progress2 );
+		handleSelectFile( txtFile2, cbxTabs2, sheets2LoadProgress );
 	}
 
 	private void handleSelectFile( TextField tf,
@@ -118,6 +129,76 @@ public class MainDiffWindowController implements Initializable {
 		Thread thread = new Thread( wsnTask );
 		thread.setDaemon( true );
 		thread.start();
+	}
+
+	@FXML
+	protected void handleLoadFile1Action( ActionEvent event )
+			throws IOException, InvalidFormatException
+	{
+		logger.log( Level.INFO, "handleLoadFile1Action( ActionEvent )" );
+		startLoadXlsFileContentsTask(
+				txtFile1.getText(),
+				cbxTabs1.getSelectionModel().getSelectedItem().toString(),
+				table1,
+				loadProgress );
+	}
+
+	@FXML
+	protected void handleLoadFile2Action( ActionEvent event )
+			throws IOException, InvalidFormatException
+	{
+		logger.log( Level.INFO, "handleLoadFile2Action( ActionEvent )" );
+		startLoadXlsFileContentsTask(
+				txtFile2.getText(),
+				cbxTabs2.getSelectionModel().getSelectedItem().toString(),
+				table2,
+				loadProgress );
+	}
+
+	private void startLoadXlsFileContentsTask( String fileName,
+											   String sheetName,
+											   final TableView table,
+											   ProgressIndicator progress )
+			throws IOException, InvalidFormatException
+	{
+		logger.log( Level.INFO,
+					"startLoadXlsFileContentsTask( fileName=[{0}], sheetName=[{1}] )",
+					new Object[] { fileName, sheetName } );
+	
+		final GetWorkSheetContent wscTask;
+
+		try {
+			logger.log( Level.INFO, "create instance of GetWorkSheetContent task" );			
+			wscTask = new GetWorkSheetContent( fileName, sheetName );
+		} catch( IOException | InvalidFormatException ex ) {
+			Logger.getLogger( MainDiffWindowController.class.getName() ).log( Level.SEVERE, null, ex );
+			throw ex;
+		}
+		
+		logger.log( Level.INFO, "bind ProgressIndicator to GetWorkSheetContent" );
+		progress.progressProperty().bind( wscTask.progressProperty() );
+
+		logger.log( Level.INFO, "assign event handler for GetWorkSheetNames.onSucceeded" );
+		wscTask.setOnSucceeded( new EventHandler() {
+			@Override
+			public void handle( Event evt ) {
+				populateTable( wscTask.getValue(), table );
+			}
+		} );
+
+		logger.log( Level.INFO, "crate thread for GetWorkSheetNames and start it" );
+		Thread thread = new Thread( wscTask );
+		thread.setDaemon( true );
+		thread.start();
+	}
+
+	private void populateTable( GetWorkSheetContent.Result r, TableView t ) {
+		logger.log( Level.INFO,	"populateTable( GetWorkSheetContent.Result, TableView )" );
+
+		t.getColumns().clear();
+		for( String s : r.colNames ) {
+			t.getColumns().add( new TableColumn( s ) );
+		}
 	}
 
 	/**
