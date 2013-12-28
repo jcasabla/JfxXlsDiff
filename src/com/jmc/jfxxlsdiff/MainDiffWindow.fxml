@@ -8,38 +8,42 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="574.0000999999975" prefWidth="810.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.jmc.jfxxlsdiff.MainDiffWindowController">
+<AnchorPane id="AnchorPane" prefHeight="525.0000779296824" prefWidth="594.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.jmc.jfxxlsdiff.MainDiffWindowController">
   <children>
     <Button id="btnFile1" mnemonicParsing="false" onAction="#handleSelectFile1Action" text="Select File 1" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0" />
     <Button id="btnFile2" mnemonicParsing="false" onAction="#handleSelectFile2Action" text="Select File 2" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="51.0" />
     <TextField fx:id="txtFile1" editable="false" prefWidth="472.0" AnchorPane.leftAnchor="131.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="16.0" />
     <TextField fx:id="txtFile2" editable="false" prefWidth="472.0" AnchorPane.leftAnchor="131.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="52.0" />
-    <SplitPane dividerPositions="0.5013089005235603" focusTraversable="true" prefHeight="424.0000999999975" prefWidth="766.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="120.0">
+    <SplitPane dividerPositions="0.5" focusTraversable="true" prefHeight="440.0000999999975" prefWidth="782.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="120.0">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="508.0" prefWidth="425.5">
           <children>
-            <TableView fx:id="table1" prefHeight="310.0" prefWidth="241.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="Column X" />
-                <TableColumn prefWidth="75.0" text="Column X" />
-              </columns>
-            </TableView>
+            <ScrollPane prefHeight="517.0" prefWidth="422.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <content>
+                <AnchorPane prefHeight="516.0" prefWidth="421.0">
+                  <children>
+                    <TableView fx:id="table1" prefHeight="516.0" prefWidth="421.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+              </content>
+            </ScrollPane>
           </children>
         </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="517.0000999999975" prefWidth="422.9998779296875">
           <children>
-            <TableView fx:id="table2" prefHeight="310.0" prefWidth="239.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="Column X" />
-                <TableColumn prefWidth="75.0" text="Column X" />
-              </columns>
-            </TableView>
+            <ScrollPane prefHeight="517.0" prefWidth="423.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <content>
+                <AnchorPane prefHeight="516.0" prefWidth="421.0">
+                  <children>
+                    <TableView fx:id="table2" prefHeight="516.0" prefWidth="421.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  </children>
+                </AnchorPane>
+              </content>
+            </ScrollPane>
           </children>
         </AnchorPane>
       </items>
     </SplitPane>
-    <ScrollBar layoutX="14.0" orientation="VERTICAL" prefHeight="422.999977929685" AnchorPane.bottomAnchor="30.0" AnchorPane.topAnchor="121.0" />
-    <ScrollBar prefWidth="488.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="14.0" />
     <ChoiceBox id="cbxFile1Tabs" fx:id="cbxTabs1" prefWidth="141.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="14.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
