@@ -27,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.util.Callback;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 /**
@@ -195,10 +196,16 @@ public class MainDiffWindowController implements Initializable {
 	private void populateTable( GetWorkSheetContent.Result r, TableView t ) {
 		logger.log( Level.INFO,	"populateTable( GetWorkSheetContent.Result, TableView )" );
 
+		Callback cb = new XlsCellValueFactory();
+
 		t.getColumns().clear();
 		for( String s : r.colNames ) {
-			t.getColumns().add( new TableColumn( s ) );
+			TableColumn tc = new TableColumn( s );
+			tc.setCellValueFactory( cb );
+			t.getColumns().add( tc );
 		}
+
+		t.setItems( r.rows );
 	}
 
 	/**
