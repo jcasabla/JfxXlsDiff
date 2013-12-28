@@ -16,32 +16,8 @@
     <TextField fx:id="txtFile2" editable="false" prefWidth="472.0" AnchorPane.leftAnchor="131.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="52.0" />
     <SplitPane dividerPositions="0.5" focusTraversable="true" prefHeight="440.0000999999975" prefWidth="782.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="120.0">
       <items>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="508.0" prefWidth="425.5">
-          <children>
-            <ScrollPane prefHeight="517.0" prefWidth="422.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <content>
-                <AnchorPane prefHeight="516.0" prefWidth="421.0">
-                  <children>
-                    <TableView fx:id="table1" prefHeight="516.0" prefWidth="421.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  </children>
-                </AnchorPane>
-              </content>
-            </ScrollPane>
-          </children>
-        </AnchorPane>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="517.0000999999975" prefWidth="422.9998779296875">
-          <children>
-            <ScrollPane prefHeight="517.0" prefWidth="423.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <content>
-                <AnchorPane prefHeight="516.0" prefWidth="421.0">
-                  <children>
-                    <TableView fx:id="table2" prefHeight="516.0" prefWidth="421.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  </children>
-                </AnchorPane>
-              </content>
-            </ScrollPane>
-          </children>
-        </AnchorPane>
+        <TableView fx:id="table1" prefHeight="516.0" prefWidth="421.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <TableView fx:id="table2" prefHeight="516.0" prefWidth="421.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       </items>
     </SplitPane>
     <ChoiceBox id="cbxFile1Tabs" fx:id="cbxTabs1" prefWidth="141.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="14.0">
