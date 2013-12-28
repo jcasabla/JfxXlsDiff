@@ -5,6 +5,7 @@
  */
 package com.jmc.jfxxlsdiff;
 
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +15,9 @@ import javafx.beans.value.ObservableObjectValue;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 
 /**
@@ -78,7 +81,7 @@ public class XlsCellValueFactory implements Callback<TableColumn.CellDataFeature
 				break;
 			}
 			case Cell.CELL_TYPE_FORMULA: {
-				cv = cell.getCellFormula();
+				cv = getFormulaValue( cell );
 				break;
 			}
 			case Cell.CELL_TYPE_NUMERIC: {
@@ -105,5 +108,52 @@ public class XlsCellValueFactory implements Callback<TableColumn.CellDataFeature
 		
 		return cv;
 	}
-	
+
+	private Object getFormulaValue( Cell cell ) {
+		Object cv = null;
+
+		FormulaEvaluator fe = cell.getSheet().getWorkbook().getCreationHelper().createFormulaEvaluator();
+		CellValue v = fe.evaluate( cell );
+
+		switch( v.getCellType() ) {
+			case Cell.CELL_TYPE_BLANK: {
+				break;
+			}
+			case Cell.CELL_TYPE_BOOLEAN: {
+				cv = v.getBooleanValue();
+				break;
+			}
+			case Cell.CELL_TYPE_ERROR: {
+				cv = v.getErrorValue();
+				break;
+			}
+			//case Cell.CELL_TYPE_FORMULA: {
+			//	cv = cell.getCellFormula();
+			//	break;
+			//}
+			case Cell.CELL_TYPE_NUMERIC: {
+				double d = v.getNumberValue();
+
+				if( DateUtil.isCellDateFormatted( cell ) ) {
+					Calendar cal = Calendar.getInstance();
+					cal.setTime( DateUtil.getJavaDate( d ) );
+					cv = cal.getTime();
+				} else {
+					cv = d;
+				}
+				break;
+			}
+			case Cell.CELL_TYPE_STRING: {
+				cv = v.getStringValue();
+				break;
+			}
+			default: {
+				logger.log( Level.WARNING, "Unexpected formula cell type = {0}", v.getCellType() );
+				break;
+			}
+		}
+
+		return cv;
+	}
+
 }
