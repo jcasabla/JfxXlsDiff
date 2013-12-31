@@ -5,6 +5,7 @@
  */
 package com.jmc.jfxxlsdiff.task;
 
+import com.jmc.jfxxlsdiff.util.POIXlsUtil;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -111,12 +113,31 @@ public class GetWorkSheetContent extends Task<GetWorkSheetContent.Result> {
 		return colNames;
 	}
 
-	private List<Row> findRows() {
-		List<Row> rows = new ArrayList<>();
+	private List<List> findRows() {
+		List<List> rows = new ArrayList<>();
 		Iterator<Row> ri = sheet.rowIterator();
 
 		while( ri.hasNext() ) {
-			rows.add( ri.next() );
+			Row r = ri.next();
+			Iterator<Cell> ci = r.cellIterator();
+
+			if( ci.hasNext() ) {
+				List colVals = new ArrayList();
+				for(int i=0; ci.hasNext(); i++) {
+					Cell cell = ci.next();
+
+					while( cell.getColumnIndex() > i ) {
+						i++;
+						colVals.add( null);
+					}
+
+					colVals.add( POIXlsUtil.getCellValue( cell ) );
+				}
+				rows.add( colVals );
+			} else {
+				rows.add( null );
+			}
+			//rows.add( ri.next() );
 		}
 
 		return rows;
@@ -125,7 +146,7 @@ public class GetWorkSheetContent extends Task<GetWorkSheetContent.Result> {
 	public class Result {
 
 		public CellRangeAddress range = null;
-		public ObservableList<Row> rows = null;
+		public ObservableList<List> rows = null;
 		public ObservableList<String> colNames = null;
 
 		public void log() {
