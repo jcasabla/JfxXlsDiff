@@ -7,6 +7,7 @@ package com.jmc.jfxxlsdiff;
 
 import com.jmc.jfxxlsdiff.task.GetWorkSheetContent;
 import com.jmc.jfxxlsdiff.task.GetWorkSheetNames;
+import com.jmc.jfxxlsdiff.util.TableViewUtil;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -126,7 +127,7 @@ public class MainDiffWindowController implements Initializable {
 			}
 		} );
 
-		logger.log( Level.INFO, "crate thread for GetWorkSheetNames and start it" );
+		logger.log( Level.INFO, "create thread for GetWorkSheetNames and start it" );
 		Thread thread = new Thread( wsnTask );
 		thread.setDaemon( true );
 		thread.start();
@@ -187,7 +188,7 @@ public class MainDiffWindowController implements Initializable {
 			}
 		} );
 
-		logger.log( Level.INFO, "crate thread for GetWorkSheetNames and start it" );
+		logger.log( Level.INFO, "create thread for GetWorkSheetNames and start it" );
 		Thread thread = new Thread( wscTask );
 		thread.setDaemon( true );
 		thread.start();
@@ -207,6 +208,11 @@ public class MainDiffWindowController implements Initializable {
 
 		t.setItems( r.rows );
 	}
+	
+	public void finishInitializingControls() {
+		logger.log( Level.INFO,	"finishInitializingControls()" );
+		TableViewUtil.syncScrolling( table1, table2 );		
+	}
 
 	/**
 	 * Initializes the controller class.
@@ -216,7 +222,7 @@ public class MainDiffWindowController implements Initializable {
 	 */
 	@Override
 	public void initialize( URL url, ResourceBundle rb ) {
-		// TODO
+		logger.log( Level.INFO,	"initialize( URL, ResourceBundle )" );
 	}
 
 }

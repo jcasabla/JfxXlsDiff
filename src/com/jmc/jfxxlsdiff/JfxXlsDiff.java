@@ -6,22 +6,43 @@
 
 package com.jmc.jfxxlsdiff;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
  * @author Justo_Casablanca
  */
 public class JfxXlsDiff extends Application {
+
+	private static final Logger logger = Logger.getLogger( JfxXlsDiff.class.getName() );
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainDiffWindow.fxml"));
-        
+		logger.log( Level.INFO, "start( Stage )");
+		
+		final FXMLLoader loader = new FXMLLoader( getClass().getResource( "MainDiffWindow.fxml" ) );
+		Parent root = (Parent) loader.load();
+        //Parent root = FXMLLoader.load(getClass().getResource("MainDiffWindow.fxml"));
+
+		stage.addEventHandler(
+			WindowEvent.WINDOW_SHOWN,
+			new EventHandler<WindowEvent>() {
+				@Override
+				public void handle( WindowEvent window ) {
+					MainDiffWindowController controller = (MainDiffWindowController)
+						loader.getController();
+					controller.finishInitializingControls();
+				}
+			} );
+
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
