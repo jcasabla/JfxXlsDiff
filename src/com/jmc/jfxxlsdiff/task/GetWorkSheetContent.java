@@ -105,6 +105,7 @@ public class GetWorkSheetContent extends Task<GetWorkSheetContent.Result> {
 
 	private List<String> findColumnNames( int lastCol ) {
 		List<String> colNames = new ArrayList<>();
+		//colNames.add( "*" );
 
 		for( int i = 0; i < lastCol; i++ ) {
 			colNames.add( CellReference.convertNumToColString( i ) );
@@ -123,6 +124,8 @@ public class GetWorkSheetContent extends Task<GetWorkSheetContent.Result> {
 
 			if( ci.hasNext() ) {
 				List colVals = new ArrayList();
+				//colVals.add( r.getRowNum() + 1 );
+
 				for(int i=0; ci.hasNext(); i++) {
 					Cell cell = ci.next();
 

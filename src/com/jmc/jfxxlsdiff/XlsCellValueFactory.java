@@ -7,7 +7,6 @@ package com.jmc.jfxxlsdiff;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
 import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableObjectValue;
@@ -20,12 +19,12 @@ import javafx.util.Callback;
  */
 public class XlsCellValueFactory implements Callback<TableColumn.CellDataFeatures<List<List>, Object>, Object> {
 
-	private static final Logger logger = Logger.getLogger( XlsCellValueFactory.class.getName() );
+	//private static final Logger logger = Logger.getLogger( XlsCellValueFactory.class.getName() );
 
 	@Override
 	public Object call( TableColumn.CellDataFeatures<List<List>, Object> df ) {
 		List r = df.getValue();
-		Iterator ci = r.iterator();
+		//Iterator ci = r.iterator();
 
 		int i = 0;
 		Iterator<TableColumn<List<List>, ?>> tci = df.getTableView().getColumns().iterator();
