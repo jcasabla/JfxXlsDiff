@@ -7,7 +7,6 @@ package com.jmc.jfxxlsdiff;
 
 import com.jmc.jfxxlsdiff.task.GetWorkSheetContent;
 import com.jmc.jfxxlsdiff.task.GetWorkSheetNames;
-import com.jmc.jfxxlsdiff.util.TableViewUtil;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -211,7 +210,9 @@ public class MainDiffWindowController implements Initializable {
 	
 	public void finishInitializingControls() {
 		logger.log( Level.INFO,	"finishInitializingControls()" );
-		TableViewUtil.syncScrolling( table1, table2 );		
+		//TableViewUtil.syncScrolling( table1, table2 );
+		//TableViewUtil.configureRowHeaders( table1 );
+		//TableViewUtil.configureRowHeaders( table2 );
 	}
 
 	/**
