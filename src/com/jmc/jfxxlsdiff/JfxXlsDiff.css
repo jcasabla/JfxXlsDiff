@@ -8,26 +8,16 @@ and open the template in the editor.
     Author     : Justo_Casablanca
 */
 
-#sheets1LoadProgress .percentage {
-	-fx-fill: null;
-}
-
-#sheets2LoadProgress .percentage {
-	-fx-fill: null;
-}
-
+#sheets1LoadProgress .percentage,
+#sheets2LoadProgress .percentage,
 #loadProgress .percentage {
 	-fx-fill: null;
 }
 
-#sheets1LoadProgress:indeterminate .spinner {
-    -fx-padding: 0.083333em;
-}
-
-#sheets2LoadProgress:indeterminate .spinner {
-    -fx-padding: 0.083333em;
-}
-
+/*
+#sheets1LoadProgress:indeterminate .spinner,
+#sheets2LoadProgress:indeterminate .spinner,
 #loadProgress:indeterminate .spinner {
     -fx-padding: 0.083333em;
 }
+*/
