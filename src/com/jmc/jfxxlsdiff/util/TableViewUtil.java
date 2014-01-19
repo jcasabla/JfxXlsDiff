@@ -47,6 +47,41 @@ public class TableViewUtil {
 		}
 	}
 
+	/*
+	public static void configureRowHeaders( TableView table ) {
+		logger.log( Level.INFO, "lockRowHeaders( TableView )" );
+
+		TableView rowHeaders = new TableView();
+		rowHeaders.getColumns().add( new TableColumn( "#" ) );
+
+		SplitPane g = findSplitPane( table );
+
+		g.getItems().get( 0 ).getChildren().add( 0, rowHeaders );
+
+		table.setItems( FXCollections.observableArrayList( "Tom", "Dick", "Harry" ) );
+		rowHeaders.setItems( FXCollections.observableArrayList( "1", "2", "3" ) );
+	}
+
+	private static SplitPane findSplitPane( Parent n ) {
+		SplitPane g = null;
+		Parent p = n;
+
+		while( p != null ) {
+			if( p instanceof SplitPane ) {
+				break;
+			} else {
+				p = p.getParent();
+			}
+		}
+
+		if( p != null ) {
+			g = (SplitPane) p;
+		}
+
+		return g;
+	}
+	*/
+
 	private static ScrollBar findScrollBar( TableView tv, Orientation or ) {
 		ScrollBar sb = null;
 
